@@ -1,0 +1,31 @@
+对集合的CRUD
+    前提
+        set as a time
+            操作对象是笛卡尔积，即集合，即关系
+            操作结果也是笛卡尔积，即集合，即关系
+                非关系型
+                    set as a record
+    种类
+        静态查询
+            query
+                最小完备操作集
+                    select
+                    project
+                    union
+                    ecept
+                    intersection
+                    cartesian product
+                常用组合
+                    join
+                    divide
+        动态改动
+            基本
+                insert
+                delete
+            常用
+                delete + insert
+                    update
+关系数据语言的分类
+    基于
+        relational algebra
+        relational calculus

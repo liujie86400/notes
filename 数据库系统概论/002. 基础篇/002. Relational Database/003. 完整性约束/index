@@ -1,0 +1,16 @@
+完整性
+    数据的存活期间，对一个数据的精确表示、其符合约束条件的有效的前后一致性的一种承诺，满足现实世界的一些要求
+        数据库自动支持的
+            1. entity integrity
+                value of prime attributes set can't be NULL(unknew, uneisted, meaneless)
+                    1. 是对关系即某类对象所有实例集合而言的
+                    2. 实例和实例间应该不同
+                    3. 主码来标志这个不同
+                    4. NULL意味着不可标识，也就无法区分
+            2. referential integrity
+                
+        某个领域自定义扩展的
+            user-defined integrity
+基本规范
+    分量不可分
+        每一个唯一标志某个实例的某个属性的值，是不能再次进行属性拆分，这样笛卡尔积的结果中包含集合。why?
