@@ -1,0 +1,18 @@
+不光从操作的时候要限制，对于操作之后的反馈分析核查也能更好的弥补可能出现的安全错误。
+    audit log
+        审计事件
+            服务器干了什么
+            系统结构和模式
+            语句
+            模式对象，特定模式对象上的表视图存储过程函数
+        审计功能
+            基本
+            多套
+            分析报表
+            日志管理
+        AUDIT NOAUDIT
+            AUDIT ALTER， UPDATE
+            ON SC；
+
+            NOAUDIT ALTER， UPDATE
+            ON SC；

@@ -1,0 +1,75 @@
+不合法的使用造成的数据泄漏、更改、破坏。
+    1. 非授权用户
+    2. 数据泄漏
+    3. 安全标准
+多层安全策略
+    1. 用户监权
+        1. static
+        2. dynamic code
+            短信
+            APP随即密码
+        3. 生物
+            脸
+            指纹
+            虹膜
+        4. 智能卡
+            不可复制可复制
+    2. 数据库存取
+        1. 用户权限定义
+        2. 合法权限检查
+            自主存取控制
+                用户出发，对不同对象权限不同
+                    1. 数据库对象
+                        1. 数据
+                            真实的数据
+                        2. 数据的承载
+                            模式
+                            基本表
+                            视图
+                    2. 操作类型
+                        anthoriation
+                GRANT TO
+                    GRANT 的发起者
+                        DBA
+                        OWNER
+                    GRANT 的授予者
+                        某个或某几个用户
+                        PUBLIC
+                    WITH GRANT OPTION
+                        被授予的用户可以继续授权给其他
+                            树形向子授权，不能回环
+                    e.g
+                        某个操作
+                            GRANT SELECT
+                            ON TABLE Student
+                            TO U1;
+                        所有操作
+                            GRANT ALL PRIVILEGES
+                            ON TABLE Student, Course
+                            TO U2,U3;
+                        某个操作到某行
+                            GRANT UPDATE(Sno), SELECT
+                            ON TABLE Student
+                            TO U4;
+                REVOKE FROM
+                    发起者同授权者
+                        REVOKE 
+                        ON
+                        FROM U4 CASCADE；
+                一般创建用户时授权
+                    CREATE USER CONNECT/RESOURCE/DBA
+                角色，用户的抽象
+                    CREATE ROLE R1
+                        GRANT 
+                        ON
+                        TO
+                        WITH ADMIN OPTION
+
+                        REVOKE
+                        ON
+                        FROM
+            强制存取控制
+                对象出发，对不同用户权限不同层级, 因为资助卒怒控制无法对数据进行安全控制，只能对操作进行限定
+                    数据和其标记是不可分的，不会导致可能泄漏，所以先DAC
+    3. OS
+    4. 密码文件
