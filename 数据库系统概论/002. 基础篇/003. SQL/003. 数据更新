@@ -1,0 +1,38 @@
+1. INSERT
+    1个
+        INSERT
+        INTO Student(Sno, Sname, Ssex, Sdept, Sage)
+        VALUES('201215128', 'Jack', 'male', CS', 18);
+    多个, 子查询的方式
+        求出平均值，create new table, insert avg
+        INSERT
+        INTO Dep_age(Sdept, Avg__age)
+        SELECT Sdept, AVG(Sage)
+2. UPDATE
+    1个值
+        UPDATE Student
+        SET age=22
+        WHERE Sno='201215121';
+    多个
+        UPDATE Student
+        SET Sage=Sage+1
+    带查询的修改, 即带条件的修改
+        UPDATE SC
+        SET Grade=0
+        WHERE Sno IN(
+            SELECT...
+        )
+3. DELETE
+    1个
+        DELETE
+        FROM Student
+        WHERE Sno='201215128';
+    多个, 变成空表
+        DELETE
+        FROM Student;
+    带子查询的修改，即有条件的修改
+        DELETE
+        FROM Student
+        WHERE Sno IN (
+            SELECT...
+        )

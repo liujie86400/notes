@@ -1,0 +1,160 @@
+SELECT [ALL|DISTINCT]
+FROM <TABLE|VIEW>
+WHERE
+GROUP BY 
+ORDER BY
+
+根据 WHERE 条件查询 FROM 的表中的某些元组，再根据SELECT筛选出某些属性。分组以及排序
+
+分类
+    单表查询
+        SELECT no, name
+        FROM Student;
+            1. columns filter
+                1. 列名可以跟定义的列顺序不一致
+                2. 特别的，筛选出所有列
+                    SELECT *
+                    FROM Student;
+                3. 不仅可以为列名，还可以是表达式
+                    SELECT name, 2014 - age
+                    FROM Student;
+                        当下年份减去年龄，得出出生日期
+                4. 字符常量、函数
+                    SELECT name, 'Year of Birth： ', 2014 - age, LOWER(dept)
+                    FROM Student;
+                5. 别名
+                    SELECT 2014 - age, BIRTHDAY
+                    FROM Student;
+            2. tuples filter
+                1. 原本唯一的tuple在选择了某些columns后可能重复
+                    1. default ALL, 默认就是显示全部
+                    2. 不重复 DISTINCT
+                        SELECT DISTINCT no
+                        FROM SC;
+                2. WHERE 满足条件
+                    1. 比较
+                        SELECT name
+                        FROM Student
+                        WHERE dept<='CS';
+                    2. 范围
+                        SELECT name
+                        FROM Student
+                        WHERE age BETWEEN 20 AND 23;
+                    3. 集合
+                        SELECT name
+                        FROM Student
+                        WHERE age NOT IN ('20', '22');
+                    4. 字符匹配
+                        SELECT *
+                        FROM Student
+                        WHERE no LIKE '2012%1';
+                            1. 任意单个字符
+                                _
+                            2. 任意长度字符
+                                %
+                    5. NULL
+                        SELECT no, 
+                        FROM SC
+                        WHERE grade IS NOT NULL
+                    6. 多重条件查询
+                        SELECT name
+                        FROM Student
+                        WHERE dept='SC' OR dept='MA' OR dept = 'IS'
+            3. ORDER BY
+            4. 聚集函数
+                聚焦函数的组的筛选条件只有
+                    1. 全组SELECT
+                    2. 满足条件的部分组ROUP BY里面的HAVING
+                WHERE 对比
+                    WHERE 不对聚焦函数起作用，只对整体起元组作用。
+                COUNT TUPLES
+                    SELECT COUNT(*)
+                    FROM Student;
+                COUNT ATTRIBUTE VALUES
+                    SELECT COUNT(DISTINCT no)
+                    FROM Student;
+                COLUMN CALCULATE
+                    AVG, SUM, MAX, MIN
+                        SELECT AVG(grade)
+                        FROM Student;
+            4. GROUP BY
+                SELECT Cno, COUNT(Sno)
+                FROM SC
+                GROUP BY no;
+                    将tuples根据某一列的值进行分组，值相同的tuples放在同一组，然后COUNT每组tuples要COUNT的对象Sno的数量
+                    HAVING
+                        对每组满足条件的才进行聚焦函数
+                            SELECT Sno
+                            FROM SC
+                            GROUP BY Sno
+                            HAVING COUNT(*) > 3
+    连接查询
+        同时查询多个表，称连接查询
+            字段，属性，列要可比，但不一定名字相同，即类型和域要相同，取什么名不重要
+            SELECT Student.*, SC.*
+            FROM Student, SC
+            WHERE Student.Sno=SC.Sno;
+                可能实现
+                    嵌套循环
+                
+        types
+            等值
+            自然
+                等值连接中去掉重复列
+            非等值
+                WHERE 条件不是 = ， 而是其他运算符
+            自身
+                自己连接自己
+                    要起别名
+                        SELECT FIRST.Cno, SECOND.Cpno
+                        FROM Course FIRST, Course SECOND
+                        WHERE FIRST.Cpno=SECOND.Cno;
+            外连接
+                JOIN的时候自然连接即去掉重复列的等值连接，outer join是保留不等值的部分，left保留左边，right保留右边
+                    因为查询的table是自然连接中outer join的table，所以用FROM 语句，即本质是选择处理后的关系。
+                        SELECT Student, Sno, Sname, Ssex, Sage, Sdept, Cno, grade
+                        FROM Student LEFT OUTER JOIN SC ON (Student.Sno=SC.Sno);
+            多表连接
+                SELECT Student, Sno, Sname, Cname, Grade
+                FROM Student, SC, Course
+                WHERE Student.Sno=SC.Sno AND SC.Cno=Course.Cno;
+            复合条件
+    嵌套查询
+        查询块
+            SELECT-FROM-WHERE
+        types
+            IN
+                nested query
+                    查询块被嵌套在WHERE 或者 HAVING中
+                        ORDER BY 是个比较奇怪的东西，必须放在查询块的最后而且是最外面查询块的最后
+                            也就是说内查询不能对元组的顺序进行排列或者说想要让元组有序必须放在最后的查询块中
+                            即关系运算建立在关系代数上，是有序属性的笛卡尔积，结果必然是集合而不能是有序集合
+                    子查询先运算，不依赖父
+                    有些可用连接查询来代替
+                        因为实现的原因，连接查询往往优化的更快
+
+            比较运算符
+                correlated nested query
+                    相关子查询=>相关嵌套查询
+                        往往是条件值需要和父查询中的值相比较
+            ANY SOME ALL
+                EXISTS
+                    只返回TRUE FALSE
+                        SELECT Sname
+                        FROM Student
+                        WHERE EXISTS (
+                            SELECT *
+                            FROM SC
+                            WHERE ...
+                        )
+                全称量词
+                    用EXISTS+两次取反来做
+                        即 任意x属于P的真值查询，转换成 存在x属于非P 的否定， 即NOT EXISTS （NOT EXISTS IN P）
+                蕴含
+    集合查询
+        多个SELECT的结果即集合，的UNION， INTERSECT， EXCEPT
+    派生表的查询
+        子查询出现在FROM的时候，derived TABLE
+    
+
+            

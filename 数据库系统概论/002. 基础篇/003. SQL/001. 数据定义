@@ -1,0 +1,66 @@
+定义
+    模式，命名空间，默认就是用户名
+        CREATE SCHEMA
+            CREATE SCHEMA “S-T” AUTHORIZATION LIU；
+        DROP SCHEMA
+            ALL
+                DROP SCHEMA S-T CASCADE；
+            CHECK has sub files
+                DROP SCHEMA S-T RESTRICT；
+        不允许修改，可以DROP再CREATE
+    表
+        CREATE TABLE <TABLE NAME> (
+            <ATTRIBUTE NAME> <TYPE> <ATTRIBUTE> [<RESTRICTION>]
+            [, <ATTRIBUTE NAME> <TYPE> <ATTRIBUTE> [<RESTRICTION>]]
+            [, ...]
+            [, <TABLE RESTRICTION>]
+        );
+            命名空间
+                1. 每次直接加在 CREATE TABLE "S-T".Student()
+                2. 在CREATE SCHEMA 时不要加分号，一起定义CREATE TABLE
+                3. 设置默认搜索地质
+                    SHOW search_path
+                        $user, PUBLIC // 默认为用户同名以及PUBLIC
+                    SET search_path TO "S-T", PUBLIC;
+            CREATE TABLE Student (
+                no CHAR(9) PRIMARY KEY,
+                name CHAR(20) UNIQUE,
+                sex CHAR(2),
+                age SMALLINT,
+                dept CHAR(20)
+            )
+            CREATE TABLE Course (
+                no CHAR(4) PRIMARY KEY，
+                name CHAR(40) NOT NULL,
+                pno CHAR(4),
+                credit SMALLINT,
+                FOREIGN KEY(pno) REFERENCES Course(no)
+            )
+        DROP TABLE
+            DROP TABLE <TABLE NAME> [RESTRICTION|CASCADE];
+        ALTER TABLE
+            ALTER TABLE <TABLE NAME>
+                                        [ADD COLUMN <COLUMN NAME> <TYPE> <RESTRICTION>]
+                                        [ADD <TABLE RESTRICTION>]
+                                        [DROP COLUMN <COLUMN NAME> [CASCADE|RESTRICTION]]
+                                        [DROP CONSTRAINT <RESTRICTION> [CASCADE|RESTRICTION]]
+                                        [ALTER COLUMN <COLUMN NAME>  <TYPE>]
+    视图
+        CREATE VIEW
+        DROP VIEW
+        不允许修改，可以DROP再CREATE
+    索引
+        数据量太大时，查询很费时，索引可以快速定位
+            ordered file
+            B+ tree
+            hash
+            bit 
+        CREATE INDEX
+            CREATE UNIQUE INDEX Stusno ON Student(no);
+            CREATE UNIQUE INDEX SCno ON SC(sno) ASC, cno DESC);
+        DROP INDEX
+            ALTER SCno RENAME TO SCSno;
+        ALTER INDEX
+            DROP INDEX Stusname;
+命名空间
+    A DBMS instance =》 多个DB =》 多个模式 =》 多个表、视图、索引

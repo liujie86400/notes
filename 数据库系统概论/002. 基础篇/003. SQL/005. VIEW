@@ -1,0 +1,49 @@
+数据的呈现方式，VIEW
+    所以它本身是为数据展示服务的，而非数据本身，所以他自己叫做虚拟的表，虚表
+    创建
+        SELECT 语句在创建的时候只保存到数据字典
+            在视图查询的时候才运行
+        WITH CHECK OPTION
+            以后对该视图操作时会自动加上WHERE 的条件
+        行列子集
+            去掉基本表的行和列，保留主码
+        虚拟列
+            新建虚拟的列用以基本数据的计算出的数据
+        
+            CREATE VIEW IS_Student
+            AS
+            SELECT Sno, Sname, Sage
+            FROM IS_Student
+            WHERE Sdept='is'
+            WITH CHECK OPTION;
+    DROP
+        DROP VIEW BT_S;
+        DROP VIEW BT_S CASCADE;
+    查询
+        view resolution
+            SELECT Sno, Sage
+            FROM IS_Student
+            WHERE Sage<20;
+            变成
+            SELECT Sno, Sage
+            FROM Student
+            WHERE Sdept='IS' AND Sage<20;
+    更新
+        INSERT
+            INSERT
+            INTO IS_Student
+            VALUES()
+        UPDATE
+            UPDATE IS_Student
+            SET Sname=''
+            WHERE Sno='20121411';
+        DELETE
+            DELETE
+            FROM 
+            WHERE
+视图优点
+    1. 数据少，操作少，简化用户操作
+    2. 多角度看待同一数据
+    3. 逻辑独立性
+    4. 隐藏机密数据
+    5. 清晰表达查询

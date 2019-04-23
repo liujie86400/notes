@@ -1,0 +1,18 @@
+NULL，不确定性，unknew
+    1. 有这个值，但现在不知道
+    2. 不应该有值
+    3. 某些原因不想写
+        电话号码
+NULL 的判断
+    IS NULL
+    IS NOT NULL
+约束
+    NOT NULL
+    UNIQUE
+比较、逻辑运算、算术运算
+    算术
+        NULL
+    比较
+        UNKNOWN，（类似TRUE FALSE）
+    
+    

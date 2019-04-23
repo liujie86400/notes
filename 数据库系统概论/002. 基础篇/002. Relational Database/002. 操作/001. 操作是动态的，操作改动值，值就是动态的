@@ -12,10 +12,12 @@
                     select
                     project
                     union
-                    ecept
-                    intersection
+                        +
+                    except
+                        -
                     cartesian product
                 常用组合
+                    intersection
                     join
                     divide
         动态改动
@@ -25,7 +27,5 @@
             常用
                 delete + insert
                     update
-关系数据语言的分类
-    基于
-        relational algebra
-        relational calculus
+
+            

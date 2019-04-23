@@ -22,13 +22,17 @@
                                 元组
                                     新结果的基数为前者tuple数乘后者tuple数
                     2. 专门运算符，从tupples和attributes的角度
-                        
                         分类
                             SELECT
                             PROJECT
                             JOIN
                             DIVISION
                         还有辅助运算符，辅助专门运算符的操作
+                最小完备集
+                    union except cartesian select project
+                    分别是从同属性集
+                        两个关系的的tuple的增加，tuple的减少，tuple的组合。
+                        单关系的tuples的筛选，attribute的筛选
         relational calculus
             关系的推演表达查询
                 基于元组

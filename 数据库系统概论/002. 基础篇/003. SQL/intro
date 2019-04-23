@@ -1,0 +1,33 @@
+SQL
+    Structured Query Language
+        Structured 即多层嵌套查询块的意思
+        不仅仅是query，更包含了创建，插入修改，安全性完整性等功能
+        从最初100多页的规范到现在3000多页，说明了核心在一开始很精简和后来的丰富
+        没有一个数据库系统能够支持全部特性，说明实践只注重最重要的有用的部分，而非大而全。
+        功能
+            data Query
+            data manipulation
+            data definition
+            data control
+        pros
+            1. 多功能统一的接口
+            2. 高度非过程化
+            3. 面向集合的操作方式
+            4. 语法结构单一独立
+            5. 简洁易用
+                核心9个动词
+                    Query
+                        SELECT
+                    DDL
+                        CREATE，DROP ALTER
+                    DML
+                        INSERT，UPDATE，DELETE
+                    DCL
+                        GRANT， REVOKE
+        三级模式
+            外模式
+                基本表
+                视图
+                    虚表，不存储
+数据字典
+    系统内部记录所有定义、权限、统计的信息。
