@@ -1,0 +1,29 @@
+触发器
+    EVENT-CONDITION-ACTION
+        CREATE TRIGGER T1
+        {BEFORE|AFTER} EVENT1 ON Student
+        REFERENCING NEW|OLD ROW AS variable
+        OR EACH{ROW|STATEMENT}
+        [WHEN condition] trigger-body
+
+    DROP TRIGGER T1 ON Student;
+    e.g.
+        CREATE TRIGGER T1
+        AFTER UPDATE OF Grade ON SC
+
+        REFERENCING
+            OLDROW AS OldTuple,
+            NEWROW AS NewTuple
+        FOR EACH ROW
+
+        BEGIN
+        WHEN(NewTuple.Grade >= 1.1*OldTuple.Grade)
+            INSERT INTO SC_U(
+                
+            )
+            VALUES()
+            IF
+                THEN；
+            END IF；
+        END;
+        FOR EACH ROW 或者FOR EACH STATEMENT，即每一行都要操作一次，或者每句触发只做一次

@@ -1,0 +1,6 @@
+CREATE TABLE SC(
+    ...,
+    ...,
+    primary key (),
+    FOREIGH KEY(Sno) REFERENCES Student(Sno),
+)

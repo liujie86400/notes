@@ -1,0 +1,4 @@
+installer
+    curl https://sh.rustup.rs -sSf | sh
+    
+version management tool

@@ -1,0 +1,9 @@
+CREATE ASSERTION ASSE_SC_DB_NUM
+    CHECK (
+        60>=(
+            SELECT COUNT(*)
+            FROM
+            WHERE
+        )
+    );
+DROP ASSERTION A2;

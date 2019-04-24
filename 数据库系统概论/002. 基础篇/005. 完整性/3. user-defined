@@ -1,0 +1,13 @@
+NOT NULL
+UNIQUE
+
+CHECK
+    属性级别
+    CREATE TABLE Student(
+        Ssex CHAR(2) CHECK (Ssex IN ('man','woman'))
+    )
+    元组级别
+    CREATE TABLE Student(
+        CHECK (Ssex='woman' OR Sname NOT LIKE 'Ms.%')
+    )
+    

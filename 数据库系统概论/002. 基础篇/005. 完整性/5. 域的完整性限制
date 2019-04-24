@@ -1,0 +1,7 @@
+域
+    属性的type，即向上抽象，向下具体
+        CREATE DOMAIN GenderDomain CHAR(2)
+        CONSTRAINT GD CHECK(VALUE IN('woman', 'man'));
+
+        ALTER DOMAIN GenderDomain
+            DROP CONSTRAINT GD;
