@@ -1,0 +1,11 @@
+install
+    npm install -g typescript
+code
+    function greeter(person: string) {
+        return "Hello, " + person;
+    }
+
+    let user = "Jie Liu";
+
+    document.body.innerHTML = greeter(user);
+    

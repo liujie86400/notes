@@ -1,0 +1,40 @@
+var
+    declaration 和 binding 分开
+        global下是全局对象的属性
+            
+        declaration hoisting at top of scope(global, function)
+            e.g.
+                for (var i=0; i<5; i++) {
+                    setTimeout(function(){
+                        console.log(i)
+                    }, 1000)
+                }
+                运行的时候
+                    var i=0;
+                        var i是声明，回hoisting到最外部的最上面，这里外面没有function，所以就是global的最上面
+                        =0; 是bingding部分，执行顺序留在原地
+                    setTimeout()
+                        1. 由于JS是单线程运行代码的，所以这里的事件循环的执行是额外放在另一个循环队列里的，当主线程执行完的空隙会检查时间循环queue, 有则按先进先出的顺序执行事件
+                        2. 这里的事件传递的是一个函数，函数分为定义和执行，这里只是把定义的代码块当作参数传给了事件，在1000毫秒后执行的时候，取出的i是主线程里已经循环过后最后等于5的i
+                解决方案
+                    因为作用域只有两种，所以global没法用，那就用函数作用域包裹起莱，当一个函数作用域内部的变量被子函数需要时，这个函数本身会一直存在而不会被垃圾回收器回收（因为有东西要用这个函数上的某个变量，那这个函数就不是垃圾）
+                    所以就用一个立即执行的函数以形参获得for循环里的i
+                        在此处立即执行才会拿到不同的每轮的i, 函数的执行用括号表示，不带括号代表函数这个对象的数据
+                        形参获取i，才能保留下来i，给子函数用
+                        为了兼容性问题，历史问题。。立即执行函数的开头不能时function，所以你可以在最外面加括号，或者加符号
+                for (var i=0; i<5; i++) {
+                    (funtion(i) {
+                        setTimeout(function(){
+                            console.log(i)
+                        }, 1000)
+                    }())
+                }
+let
+    作用域是大括号
+    bingding可以改变
+const
+    作用域是大括号
+    bingding不可变
+    初始化必须bingding
+参考书目
+    ECMAScript 2018 快速入门

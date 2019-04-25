@@ -1,0 +1,22 @@
+default
+    nav li {
+        opacity: 0.5;
+    }
+根据不同页面高亮起导航中所对应的关键词
+    1. 不同页面body给一个类
+        body.articles
+        body.home
+    2. 导航的不同关键词给一个类
+        li.articles
+        li.home
+    3. css样式，满足不同类的li, 覆盖上面的default效果
+        body.home nav li.home,
+        body.articles nav li.articles {
+            opacity: 1;
+            /* 其他样式也行 */
+        }
+hover高亮另一种效果
+    nav li:hover {
+        opacity: 1;
+        font-size: bold;
+    }

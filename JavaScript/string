@@ -1,0 +1,11 @@
+四字节Unicode
+    字面表示
+        console.log('\u{1F642}') 代替了 '\uUD83d\ukjlkj'
+    码点
+        '\u{1F642}'.codePointAt(0) 代替了.charCodeAt()
+    从码点转换成字符
+        String.fromCodePoint(655323)
+strOrArr.includes('hello')
+str.startWith('hello')
+'hello'.repeat(10)
+'0.10'.padStart(8, 'hello') 总长，为了满足总长而填补的字符

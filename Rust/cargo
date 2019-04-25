@@ -1,2 +1,4 @@
 build tool
 package manager
+    cargo new bin_crate
+    cargo new --lib lib_crate

@@ -1,0 +1,36 @@
+let x=1, y=2, z=3;
+=>
+let [x,y,z] = [1,2,3]
+
+数组和对象作为一个整体把多个KV直接赋值给多个变量
+    剩余参数
+        解构时可以把剩下多个变量给最后一个变量
+        let [x, ...y] = [1,2,3]
+    默认值
+        let [x, y=2] = [2]
+    展开数组
+        let a = [...b, 3]
+    e.g.
+        1. DOM元素解构
+            const eBlock = document.getElementById('block1');
+            let [style:{width,height,gb},className, attributes:{data:{value}}] = eBlock;
+            冒号
+                冒号前的名字是路径，即对象的属性下的某个子对象名，子对象名在父对象中是属性名。
+                冒号的右边也可以是变量的别名
+        2. LI减少监听事件
+            正常应该是每个li元素增加监听事件，这样会有很多事件，但可以给UL添加1个，然后再判断是哪个LI
+                get dom 后， 
+                e.addEventListenre('click', function onDivClick({target:{tagName, style}}){})
+                省略了拿到dom后的层层扒皮
+        3. 忽略掉某些数据
+            function f(){return [1,2,3]}
+            let [,,z] = f()
+        4. 克隆数组
+            let arr1 = [1,2,3]
+            let [...arr2] = arr1;
+        5. 克隆对象,只赋值第一层
+            let obj = {x:1, y:1}
+            let obj1 = {...x1, z:1}
+        6. 数值交换
+            [x,y] = [y,x]
+        

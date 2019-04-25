@@ -1,0 +1,41 @@
+statement
+    side effect + operation
+        types
+            declaration statement
+                variable
+                struct
+                function
+                module package
+                    extern
+                    use
+                        auto use std and std::prelude module
+                        #[no_std]
+            expression statement
+                expression with semicolon
+                    give up value, return unit type
+                        unique value
+                            ()
+expression
+    evaluating value
+        place expression
+            local variable
+            static variable
+            解引用
+                *expr
+            数组index
+                expr[expr]
+            attribute index
+                expr.field
+            上述的组合
+            
+        value expression
+执行顺序
+    有分号就继续执行，
+        if statement, run it
+        if expression, evaluate it
+        if semicolon 后什么也没有，就会添上()
+        if function body, block expression, 
+            return last expression,
+                if everything is statement, return ()
+一切皆表达式，只返回最后一个表达式
+    当最后一个不是表达式时，将最后一个语句作为()的值的特殊表达式

@@ -1,0 +1,17 @@
+annotation
+    function f(name){}
+    => 
+    function f(name: string){}
+interface
+    equal if inner structure  are equal even though without same name
+class
+    class Student {
+        fullName: string;
+        constructor(
+            public firstName: string, public middleInitial: string, public lastName: string
+        ) {
+            this.fullName = firstName + " " + 
+                            middleInitial + "" +
+                            lastName;
+        }
+    }

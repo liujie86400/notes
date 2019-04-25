@@ -1,0 +1,57 @@
+下载、安装
+    sudo apt install postgresql
+login/logout
+    系统用户切换至postgres
+        su - postgres
+            subtitute user
+                no param
+                    root
+                with foo
+                    foo
+                with - foo, new logging with new terminal
+                    1. switch current directory
+                        1. foo => /home/foo
+                        2. root => /root
+                    2. loading ~/.bashrc
+    命令行连接操作
+        psql（PostgreSQL）
+            列出数据库（list）
+                \l
+            退出（quit)
+                \q
+    开启/停止服务
+        初始化
+            sudo service postgresql initdb
+        开启
+            sudo service postgresql start
+        停止
+            sudo service postgresql stop
+        查看状态
+            sudo service postgresql status
+    开启/停止数据库
+        开始
+            pg_ctl start -D /home/l/pg
+        停止
+            pg_ctl stop -D /home/l/pg -m
+                smart
+                fast
+                immediate
+postgresql.conf
+    监听IP:port
+        listen_address = 'localhost'
+            localhost
+            *
+        port = 5432
+            multi pg
+                5432
+                5431
+                5433...
+            require reboot
+    log
+        logging_collector =on
+        log_directory = 'pg_log'
+            per day
+                log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
+                log_truncate_on_rotation = off
+                log_rotation_age = 1d
+                log_rotation_size = 0
